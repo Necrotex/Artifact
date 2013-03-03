@@ -1,5 +1,5 @@
 # Artifact
-##A Modern PHP utility libary for rapid application development
+##A modern PHP utility libary for rapid application development
 
 Artifact is intended to make you life as a programmer easier. 
 It provides tools, patterns, base classes, and utilites you need in your daily programming life
