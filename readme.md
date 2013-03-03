@@ -1,5 +1,5 @@
 # Artifact
-###### A Modern PHP utility libary for rapid application development
+##A Modern PHP utility libary for rapid application development
 
 Artifact is intended to make you life as a programmer easier. 
 It provides tools, patterns, base classes, and utilites you need in your daily programming life
@@ -22,6 +22,9 @@ At the moment __php-error__ is activated by default.
 + Storage management ( Sessions, ...)
 + Cacheing( Magic Caching, mcached, file cache, ... )
 + Events
+
+### Requirements
+The only requirement is __PHP__ __5.4+__. Artifact uses many of the new PHP features like closures, namespaces and late static binding so this won't work on older configurations. Sorry.
 
 ### How to use
 Just include __bootstrap.php__ an you are ready to go.
