@@ -72,6 +72,15 @@ class String extends ArtifactObject {
 		return $function ( $this->_string );
 	}
 
+	public function _load_form_file( $path ) {
+		if ( file_exists( $path ) ) {	
+			$this->_string = file_get_contents( $path );
+		} else {
+			throw new \Exception( 'File ' . $path . ' does not exist.' );
+		}
+		return $this;
+	}
+
 }
 
 ?>

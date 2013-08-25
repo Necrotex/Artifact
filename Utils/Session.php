@@ -8,7 +8,13 @@ class Session extends ArtifactObject {
 
 	protected $_namespace;
 
+	public function init( $namespace ){
+		$this->namespace = $namespace;
+
+		session_start()
+
+	}
 		
 }
 
-?>
+?>	
