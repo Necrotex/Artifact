@@ -6,7 +6,11 @@ use \Artifact\Common\ArtifactStaticObject;
 
 class Validator extends ArtifactStaticObject {
 
-	protected static $_rules = array(
+	protected static $_rules = NULL;
+
+	public static function init(){
+
+		static::$_rules = array(
 			'alphanum' => '/^[a-zA-Z0-9_]*$/',
 			'date' => function( $var ){
 							$s = explode('.', $var );
@@ -21,17 +25,36 @@ class Validator extends ArtifactStaticObject {
 			'phone' => '/^[ +0-9/()]+$/',
 			'zipcode' => '/[0-9]{5}$/'
 		);
+	}
 
 	public static function add_custom_rule( $name, $rule ) {
 		static::$_rules[ $name ] = $rule;
 	}
 
+	private static function _rule_date( $var ) {
+
+	}
+
+
 	protected static function check( $string, $rule ) {
+	
+		if( ! $string instanceof \Artifact\Utils\String ) {
+			$string = new \Artifact\Utils\String( $string );
+		}
+
+		if( ! is_callable( $rule ) )
+			return $string->match( $rule );
+		else
+			return call_user_func_array( $rule , array( $string->__toString() ) );
 
 	}
 
 	public static function __callStatic( $method, $param = array() ) {
 
+		if( array_key_exists( $method , static::$_rules ) )
+			return static::check( current( $param ) , static::$_rules[ $method ] );
+		else
+			throw new \Exception( $method . ' is not a valid rule!' );
 	}
 
 }
